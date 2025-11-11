@@ -1,0 +1,110 @@
+:root {
+    --main-color: #bd4678;
+    --sec-color: #9b406e;
+    --bg: #f9f9f9;
+    --texto: #333;
+    --texto2: #fff;
+}
+
+[data-tema="escuro"] {
+    --main-color: #bd4678;
+    --sec-color: #8a325e;
+    --bg: #0b1220;
+    --texto: #fff;
+    --text02: #333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: var(--bg);
+    color: var(--texto);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: var(--main-color);
+    color: var(--texto2);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 1.6rem;
+}
+
+nav a {
+    color: var(--texto2);
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+main h2 {
+    font-size: 2rem;
+    color: var(--sec-color);
+    margin-bottom: 20px;
+}
+
+main p {
+    max-width: 600px;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+}
+
+.botao {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.botao a {
+    text-decoration: none;
+    background-color: var(--main-color);
+    color: var(--texto2);
+    padding: 12px 25px;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.botao a:hover {
+    background-color: transparent;
+    transform: scale(1.1);
+    color: var(--texto);
+    border: 1px solid var(--main-color);
+}
+
+footer {
+    background-color: var(--main-color);
+    color: var(--texto2);
+    text-align: center;
+    padding: 10px;
+    font-size: 0.9rem;
+}
