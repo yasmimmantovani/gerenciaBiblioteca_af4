@@ -12,6 +12,7 @@ botaoTema.addEventListener('click', () => {
     if (temaAtual === 'escuro') {
         html.removeAttribute('data-tema');
         botaoTema.innerHTML = '<ion-icon name="moon-outline"></ion-icon>';
+        localStorage.setItem('tema', 'claro');
     } else {
         html.setAttribute('data-tema', 'escuro');
         botaoTema.innerHTML = '<ion-icon name="sunny-outline"></ion-icon>';

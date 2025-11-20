@@ -1,12 +1,15 @@
-<?php 
-$servidor = "localhost";
-$usuario = "root";
-$senha = "";
-$banco = "clube_do_livro";
+<?php
+// php/conexao.php
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db   = "clubelivro";
 
-$conexao = new mysqli($servidor, $usuario, $senha, $banco);
+$mysqli = new mysqli($host, $user, $pass, $db);
 
-if($conexao->connect_error) {
-    die("Falha na conexão: " . $conexao->connect_error);
+if ($mysqli->connect_error) {
+    die("Erro ao conectar ao banco: " . $mysqli->connect_error);
 }
-?>
+
+// opcional: define charset
+$mysqli->set_charset("utf8mb4");

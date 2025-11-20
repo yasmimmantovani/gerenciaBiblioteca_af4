@@ -1,39 +1,45 @@
-create database clubelivro;
-use clubelivro;
 
-create table usuarios_adm (
-    id int primary key auto_increment,
-    nome varchar(100) not null,
-    email varchar(100) unique not null,
-    telefone varchar(20),
-    senha  varchar(255) not null,
-    nivel enum('admin', 'funcionario') default 'funcionario',
-);
+CREATE DATABASE IF NOT EXISTS clubelivro DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE clubelivro;
 
-create table clientes (
-    id_clientes int primary key auto_increment,
-    nome varchar(100) not null,
-    email varchar(100) not null,
-    endereco varchar(255) not null
-);
 
-create table livros (
-    id_livro int primary key auto_increment,
-    titulo varchar(150) not null,
-    autor varchar(100),
-    ano int,
-    genero varchar(50),
-    quantidade int not null default  1,
-    disponibilidade enum('Disponível', 'Emprestado') default 'Disponível'
-);
+CREATE TABLE IF NOT EXISTS usuarios_adm (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(100) NOT NULL,
+  email VARCHAR(100) NOT NULL UNIQUE,
+  telefone VARCHAR(20),
+  senha VARCHAR(255) NOT NULL,
+  nivel ENUM('admin','funcionario') NOT NULL DEFAULT 'funcionario',
+  data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-create table emprestimos (
-    id_emprestimo int primary key auto_increment,
-    id_clients int,
-    id_livro int,
-    data_emprestimo date not null,
-    data_devolucao date,
-    status enum('Ativo', 'Devolvido') default 'Ativo',
-    foreign key (id_clientes) references clientes(id_clientes) on delete cascade,
-    foreign key (id_livro) references livros(id_livro) on delete cascade
-);
+
+CREATE TABLE IF NOT EXISTS clientes (
+  id_clientes INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(100) NOT NULL,
+  email VARCHAR(100) NOT NULL,
+  endereco VARCHAR(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE IF NOT EXISTS livros (
+  id_livro INT AUTO_INCREMENT PRIMARY KEY,
+  titulo VARCHAR(150) NOT NULL,
+  autor VARCHAR(100),
+  ano INT,
+  genero VARCHAR(50),
+  quantidade INT NOT NULL DEFAULT 1,
+  disponibilidade ENUM('Disponível','Emprestado') DEFAULT 'Disponível'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE IF NOT EXISTS emprestimos (
+  id_emprestimo INT AUTO_INCREMENT PRIMARY KEY,
+  id_clientes INT,
+  id_livro INT,
+  data_emprestimo DATE NOT NULL,
+  data_devolucao DATE,
+  status ENUM('Ativo','Devolvido') DEFAULT 'Ativo',
+  CONSTRAINT fk_emprestimos_clientes FOREIGN KEY (id_clientes) REFERENCES clientes(id_clientes) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT fk_emprestimos_livros   FOREIGN KEY (id_livro)    REFERENCES livros(id_livro) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
