@@ -251,6 +251,41 @@ footer a {
     font-size: 1.6rem;
 }
 
+/* Tela de Cadastro */
+
+.container {
+    background-color: var(--main-color);
+    display: flex;
+    width: 80%;
+    max-width: 900px;
+    justify-content: center;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+input {
+    border-radius: 8px;
+    padding: 8px 50px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin: 10px auto;
+    border: 1px solid #333;
+}
+
+select {
+    border-radius: 8px;
+    padding: 8px 50px;
+    display: flex;
+    margin: 10px auto;
+}
+
+button {
+    border-radius: 8px;
+    padding: 10px;
+}
+
 /* Responsivo */
 @media (max-width: 900px) {
     header {
