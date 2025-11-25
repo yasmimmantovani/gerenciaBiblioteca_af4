@@ -15,9 +15,9 @@ Sistema web desenvolvido para auxiliar na administração de bibliotecas, permit
 - Funcionários
 - Empréstimos
 
-✔ **Edição e exclusão de registros**
-✔ **Upload de capa de imagens para os livros**
-✔ **Consulta automática de endereço via CEP (API ViaCEP)**
+✔ **Edição e exclusão de registros**  
+✔ **Upload de capa de imagens para os livros**  
+✔ **Consulta automática de endereço via CEP (API ViaCEP)**  
 ✔ **Dashboard com gráficos interativos (Chart.js)**  
 ✔ **Geração de relatórios em PDF e CSV**  
 ✔ **Mensagens modais para avisos e confirmações**  
