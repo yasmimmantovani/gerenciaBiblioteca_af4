@@ -154,8 +154,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         &copy; 2025 BookLover | Desenvolvido por Yasmim Mantovani
         <p>Siga-nos:<br>
             <a href="https://instagram.com" target="_blank"><ion-icon name="logo-instagram"></ion></a> 
-            <a href="https://facebook.com" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a> 
-            <a href="https://x.com" target="_blank"><ion-icon name="logo-twitter"></ion-icon></a>
+            <a href="https://github.com/yasmimmantovani" target="_blank"><ion-icon name="logo-github"></ion-icon></a> 
+            <a href="https://www.linkedin.com/in/yasmim-mantovani/" target="_blank"><ion-icon name="logo-linkedin"></ion-icon></a>
         </p>
     </footer>
 
