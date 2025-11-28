@@ -237,7 +237,7 @@ $dados = $mysqli->query($sql);
     </div>
 
     <!-- Modal de aviso CEP -->
-     <div id="cepModal" class="modal-overlay" style="display: none;">
+    <div id="cepModal" class="modal-overlay" style="display: none;">
         <div class="modal-box">
             <h3>Aviso</h3>
             <p id="cepMessage"></p>
@@ -246,9 +246,9 @@ $dados = $mysqli->query($sql);
                 <button id="closeCepModal" class="btn-secondary">Fechar</button>
             </div>
         </div>
-     </div>
+    </div>
 
-     <!-- Script do Modal -->
+    <!-- Script do Modal -->
     <?php if (!empty($_SESSION['mensagem'])): ?>
     <div class="modal-bg" id="modal">
         <div class="modal <?= $_SESSION['tipo_msg'] ?>">

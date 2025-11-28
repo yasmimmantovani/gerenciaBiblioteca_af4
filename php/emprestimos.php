@@ -170,8 +170,7 @@ $dados = $mysqli->query($sql);
 
                 <input type="hidden" name="data_emprestimo" class="input" value="<?= $edit['data_emprestimo'] ?? '' ?>">
 
-                <label>Data de devolução:</label>
-                <input type="date" name="data_devolucao" class="input" value="<?= $edit['data_devolucao'] ?? '' ?>">
+                <input type="hidden" name="data_devolucao" class="input" value="<?= $edit['data_devolucao'] ?? '' ?>">
 
                 <button type="submit" class="btn-submit"><?= $edit ? "Salvar Alterações" : "Cadastrar" ?></button>
             </form>
@@ -202,7 +201,9 @@ $dados = $mysqli->query($sql);
                         <td><?= $l['status'] ?></td>
                         <td class="table-actions">
                             <a class="action-btn" href="emprestimos.php?edit=<?= $l['id_emprestimo'] ?>">Editar</a>
-                            <a class="action-btn" href="emprestimos.php?del=<?= $l['id_emprestimo'] ?>" onclick="return confirmarExclusao(<?= $l['id_emprestimo'] ?>);">Excluir</a>
+                            <?php if($l['status'] !== 'Ativo'): ?>
+                                <a class="action-btn" href="emprestimos.php?del=<?= $l['id_emprestimo'] ?>" onclick="return confirmarExclusao(<?= $l['id_emprestimo'] ?>);">Excluir</a>
+                            <?php endif; ?>
 
                             <?php if($l['status'] !== 'Devolvido'): ?>
                                 <a class="action-btn" href="emprestimos.php?dev=<?= $l['id_emprestimo'] ?>">Devolver</a>

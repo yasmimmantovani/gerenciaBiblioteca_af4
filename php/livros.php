@@ -54,8 +54,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Excluir
 if(isset($_GET['del'])) {
     $id = (int)$_GET['del'];
-    $mysqli->query("delete from livros where id_livro=$id");
-    header('Location: livros.php');
+    $consulta = $mysqli->prepare("select id_emprestimo
+                                  from emprestimos
+                                  where id_livro = ?
+                                  and status = 'Ativo'");
+
+    $consulta->bind_param("i", $id);
+    $consulta->execute();
+    $res = $consulta->get_result();
+
+    if ($res->num_rows > 0) {
+        $_SESSION['mensagem'] = "Este livro não pode ser excluído pois possui empréstimos em aberto.";
+        $_SESSION['tipo_msg'] = "error";
+
+        header("Location: livros.php");
+        exit;
+    }
+    $mysqli->query("delete from livros where id_livro = $id");
+    $mensagem = "Livro excluído com sucesso!";
+    $tipo_msg = "success";
+    header("Location: livros.php");
     exit;
 }
 
@@ -205,6 +223,22 @@ $dados = $mysqli->query($sql);
             </div>
         </div>
     </div>
+
+    <!-- Script do Modal -->
+    <?php if (!empty($_SESSION['mensagem'])): ?>
+    <div class="modal-bg" id="modal">
+        <div class="modal <?= $_SESSION['tipo_msg'] ?>">
+            <p><?= $_SESSION['mensagem'] ?></p>
+
+            <button onclick="document.getElementById('modal').remove();">OK</button>
+        </div>
+    </div>
+
+    <?php
+        unset($_SESSION['mensagem']);
+        unset($_SESSION['tipo_msg']);
+    ?>
+    <?php endif; ?>
         
 
     <!-- Tema -->
