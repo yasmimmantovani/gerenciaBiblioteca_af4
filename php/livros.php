@@ -91,13 +91,19 @@ $sql = "select * from livros where 1";
 
 if ($busca !== "") {
     if (is_numeric($busca)) {
-        $sql .= " and (id_livro = $busca or titulo like '%$busca%')";
+        $sql .= " and (id_livro = $busca 
+                       or ano like '%$busca%'
+                       or titulo like '%$busca%'
+                       or autor like '%$busca%'
+                       or genero like '%$busca%')";
     } else {
-        $sql .= " and (autor like '%$busca%' or genero like '%$busca' or ano like '%$busca%')";
+        $sql .= " and (titulo like '%$busca%' 
+                       or genero like '%$busca%' 
+                       or ano like '%$busca%')";
     }
 }
 
-$sql .= " order by id_livro desc";
+$sql .= " order by titulo asc";
 $dados = $mysqli->query($sql);
 ?>
 
@@ -190,7 +196,7 @@ $dados = $mysqli->query($sql);
                     <tr>
                         <td>
                         <?php if (!empty($l['capa'])): ?>
-                            <img src="../uploads/<?= $l['capa']; ?>" width="60">
+                            <img src="../uploads/<?= $l['capa']; ?>" class="img-livro" alt="Capa do livro" width="60">
                         <?php else: ?>
                             Sem capa 
                         <?php endif; ?>

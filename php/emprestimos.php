@@ -24,13 +24,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $livro = $result->fetch_assoc();
 
         if ($livro['quantidade'] <= 0) {
-            $_SESSION['mensagem'] = "Este livro está indisponível para empréstimo.";
+            $_SESSION['mensagem'] = "Este livro está indisponível para empréstimo ou não existe. Consulte a tabela livros e tente novamente.";
             $_SESSION['tipo_msg'] = "error";
 
-            header("Location: emprestimos.php");
+            header("Location: livros.php");
             exit;
-        }
+        } else {
+            $query = $mysqli->prepare("SELECT id_clientes FROM clientes WHERE id_clientes = ?");
+            $query->bind_param("i", $id_clientes);
+            $query->execute();
+            $result = $query->get_result();
+            $clientes = $result->fetch_assoc();
 
+            if ($clientes['id_clientes'] <= 0) {
+                $_SESSION['mensagem'] = "Não existe um cliente cadastrado com esse ID. Por favor, consulte a tabela clientes e tente novamente.";
+                $_SESSION['tipo_msg'] = "error";
+
+                header("Location: clientes.php");
+                exit;
+            }
+        }    
         $mysqli->query("INSERT INTO emprestimos
                         (id_livro, id_clientes, data_emprestimo, data_devolucao, status)
                         VALUES ('$id_livro', '$id_clientes', NOW(), '$data_devolucao', 'Ativo')");

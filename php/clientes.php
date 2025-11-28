@@ -91,13 +91,18 @@ $sql = "select * from clientes where 1";
 
 if ($busca !== "") {
     if (is_numeric($busca)) {
-        $sql .= " and (id_clientes = $busca or nome like '%$busca%')";
+        $sql .= " and (id_clientes = $busca 
+                       or nome like '%$busca%'
+                       or email like '%$busca%'
+                       or cidade like '%$busca%')";
     } else {
-        $sql .= " and (nome like '%$busca%' or email like '%$busca' or cidade like '%$busca%')";
+        $sql .= " and (nome like '%$busca%' 
+                       or email like '%$busca%' 
+                       or cidade like '%$busca%')";
     }
 }
 
-$sql .= " order by nome desc";
+$sql .= " order by nome asc";
 $dados = $mysqli->query($sql);
 ?>
 
